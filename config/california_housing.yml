@@ -27,8 +27,10 @@ target_encode: False
 # Training parameters
 batch_size: 128
 val_batch_size: 256
-early_stopping_rounds: 20
-epochs: 1000
+early_stopping_rounds: 5000
+#was 20
+epochs: 1000000000000000000
+#was 1000
 logging_period: 100
 
 # About the data
