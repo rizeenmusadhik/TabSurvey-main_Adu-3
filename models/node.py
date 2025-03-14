@@ -34,15 +34,15 @@ class NODE(BaseModelTorch):
         super().__init__(params, args)
 
         layer_dim = int(self.params["total_tree_count"] / self.params["num_layers"])
-        n_cont_features = 8
+        
         d_embedding = 64
 
-        embeddings = LinearReLUEmbeddings(n_cont_features, d_embedding)
+        embeddings = LinearReLUEmbeddings(args.num_features, d_embedding)
         if args.objective == "regression":
             self.model = nn.Sequential(
                 embeddings,
                 nn.Flatten(),
-                node_lib.DenseBlock(n_cont_features * d_embedding, 2048, num_layers=1, tree_dim=3, depth=6, flatten_output=False,
+                node_lib.DenseBlock(args.num_features * d_embedding, 2048, num_layers=1, tree_dim=3, depth=6, flatten_output=False,
                    choice_function=node_lib.entmax15, bin_function=node_lib.entmoid15),
     node_lib.Lambda(lambda x: x[..., 0].mean(dim=-1)),  # average first channels of every tree
     ).to(self.device)
@@ -50,7 +50,7 @@ class NODE(BaseModelTorch):
 
         elif args.objective == "classification" or args.objective == "binary":
             self.model = nn.Sequential(
-                node_lib.DenseBlock(args.num_features,
+                node_lib.DenseBlock(args.num_features* d_embedding,
                                     # layer_dim=1024, num_layers=2, depth=6,
                                     layer_dim=layer_dim, num_layers=self.params["num_layers"],
                                     depth=self.params["tree_depth"], tree_dim=args.num_classes + 1,

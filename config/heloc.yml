@@ -6,7 +6,7 @@ objective: binary # Don't change
 optimize_hyperparameters: True
 
 # GPU parameters
-use_gpu: False
+use_gpu: True
 gpu_ids: [0, 1]
 data_parallel: True
 
@@ -28,7 +28,7 @@ one_hot_encode: False
 batch_size: 128
 val_batch_size: 256
 early_stopping_rounds: 20
-epochs: 10
+epochs: 100
 logging_period: 100
 
 # About the data

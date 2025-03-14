@@ -26,8 +26,8 @@ one_hot_encode: False
 # Training parameters
 batch_size: 1024
 val_batch_size: 1024
-early_stopping_rounds: 20
-epochs: 1000
+early_stopping_rounds: 100
+epochs: 1500
 logging_period: 100
 
 # About the data
