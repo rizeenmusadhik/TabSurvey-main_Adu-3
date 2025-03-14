@@ -50,6 +50,8 @@ class NODE(BaseModelTorch):
 
         elif args.objective == "classification" or args.objective == "binary":
             self.model = nn.Sequential(
+                embeddings,
+                nn.Flatten(),
                 node_lib.DenseBlock(args.num_features* d_embedding,
                                     # layer_dim=1024, num_layers=2, depth=6,
                                     layer_dim=layer_dim, num_layers=self.params["num_layers"],
