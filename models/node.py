@@ -52,13 +52,13 @@ class NODE(BaseModelTorch):
             self.model = nn.Sequential(
                 embeddings,
                 nn.Flatten(),
-                node_lib.DenseBlock(args.num_features* d_embedding,
+                node_lib.DenseBlock(args.num_features * d_embedding,
                                     # layer_dim=1024, num_layers=2, depth=6,
-                                    layer_dim=layer_dim, num_layers=self.params["num_layers"],
-                                    depth=self.params["tree_depth"], tree_dim=args.num_classes + 1,
+                                    2048, num_layers=4,
+                                    depth=8, tree_dim=3,
                                     flatten_output=False,
                                     choice_function=node_lib.entmax15, bin_function=node_lib.entmoid15),
-                node_lib.Lambda(lambda x: x[..., :args.num_classes].mean(dim=-2)),
+                node_lib.Lambda(lambda x: x[..., 0].mean(dim=-1)),
             ).to(self.device)
 
         print("On:", self.device)
