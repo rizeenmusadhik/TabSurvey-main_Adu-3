@@ -72,7 +72,7 @@ class NODE(BaseModelTorch):
                                 X_valid=np.array(X_val, dtype=np.float32), y_valid=np.array(y_val, dtype=np.float32))
 
         with torch.no_grad():
-            # trigger data-aware initialisation
+            # Trigger data-aware initialization
             res = self.model(torch.as_tensor(data.X_train[:1000], device=self.device, dtype=torch.float32))
         experiment_name = '{}_{}.{:0>2d}.{:0>2d}_{:0>2d}:{:0>2d}:{:0>2d}'.format(self.args.dataset, *time.gmtime()[:6])
 
@@ -83,7 +83,7 @@ class NODE(BaseModelTorch):
             data.y_train = data.y_train.astype(int)
         elif self.args.objective == "binary":
             loss_func = F.binary_cross_entropy_with_logits
-            data.y_train = data.y_train.reshape(-1, 1)
+            data.y_train = data.y_train.reshape(-1, 1)  # Ensure target has shape [batch_size, 1]
 
         self.trainer = node_lib.Trainer(
             model=self.model, loss_function=loss_func,
@@ -105,8 +105,13 @@ class NODE(BaseModelTorch):
 
         for batch in node_lib.iterate_minibatches(data.X_train, data.y_train, batch_size=self.args.batch_size, shuffle=True,
                                                   epochs=self.args.epochs):
+            x_batch, y_batch = batch
 
-            metrics = self.trainer.train_on_batch(*batch, device=self.device)
+            # Squeeze the target tensor for binary classification
+            if self.args.objective == "binary":
+                y_batch = y_batch.squeeze(-1)  # Remove the extra dimension
+
+            metrics = self.trainer.train_on_batch(x_batch, y_batch, device=self.device)
             loss_history.append(metrics['loss'].item())
 
             if self.trainer.step % self.args.logging_period == 0:
@@ -141,7 +146,7 @@ class NODE(BaseModelTorch):
                 self.trainer.remove_old_temp_checkpoints()
 
             if self.trainer.step > best_step_loss + early_stopping:
-                print('BREAK. There is no improvment for {} steps'.format(early_stopping))
+                print('BREAK. There is no improvement for {} steps'.format(early_stopping))
                 print("Best step: ", best_step_loss)
                 print("Best Val Loss: %0.5f" % best_loss)
                 break
