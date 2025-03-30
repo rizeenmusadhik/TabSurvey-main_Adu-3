@@ -110,7 +110,11 @@ class NODE(BaseModelTorch):
             # Squeeze the target tensor for binary classification
             if self.args.objective == "binary":
                 y_batch = y_batch.squeeze(-1)  # Remove the extra dimension
-
+            elif self.args.objective == "classification":
+                y_batch = y_batch.astype(int)  # Ensure the target is integer
+                y_batch = torch.as_tensor(y_batch, dtype=torch.long, device=self.device)  # Convert to LongTensor
+            
+            
             metrics = self.trainer.train_on_batch(x_batch, y_batch, device=self.device)
             loss_history.append(metrics['loss'].item())
 
