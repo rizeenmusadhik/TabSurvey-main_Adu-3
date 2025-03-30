@@ -164,6 +164,7 @@ class NODE(BaseModelTorch):
                 prediction = F.softmax(prediction, dim=1)
             elif self.args.objective == "binary":
                 prediction = torch.sigmoid(prediction)
+                prediction = prediction.unsqueeze(-1) #Added
 
             prediction = check_numpy(prediction)
 
