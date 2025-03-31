@@ -1,6 +1,3 @@
-
-@RELATION FICO-HELOC-cleaned
-
 @ATTRIBUTE RiskPerformance {Bad, Good}
 @ATTRIBUTE ExternalRiskEstimate INTEGER
 @ATTRIBUTE MSinceOldestTradeOpen INTEGER
