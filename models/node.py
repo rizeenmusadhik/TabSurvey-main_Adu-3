@@ -81,6 +81,7 @@ class NODE(BaseModelTorch):
         elif self.args.objective == "classification":
             loss_func = F.cross_entropy
             data.y_train = data.y_train.astype(int)
+            print('classification of covertype')
         elif self.args.objective == "binary":
             loss_func = F.binary_cross_entropy_with_logits
             data.y_train = data.y_train.reshape(-1, 1)  # Ensure target has shape [batch_size, 1]
@@ -110,9 +111,7 @@ class NODE(BaseModelTorch):
             # Squeeze the target tensor for binary classification
             if self.args.objective == "binary":
                 y_batch = y_batch.squeeze(-1)  # Remove the extra dimension
-            elif self.args.objective == "classification":
-                y_batch = y_batch.astype(int)  # Ensure the target is integer
-                y_batch = torch.as_tensor(y_batch, dtype=torch.long, device=self.device)  # Convert to LongTensor
+            
             
             
             metrics = self.trainer.train_on_batch(x_batch, y_batch, device=self.device)
