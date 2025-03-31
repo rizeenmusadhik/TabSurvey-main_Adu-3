@@ -124,7 +124,7 @@ parameters: {
         weight_decay: 1e-4
         }
     },
-    heloc: {
+    Heloc: {
         LinearModel: {},
         KNN: {
             n_neighbors: 25
