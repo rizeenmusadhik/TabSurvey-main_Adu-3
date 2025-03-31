@@ -98,9 +98,9 @@ def load_data(args):
         y = df[label_col].to_numpy()
 
     elif args.dataset == "Heloc":  # Binary classification dataset without categorical data
-        path = "HMEQ_Loss.csv"   # Missing values already filtered
+        path = "heloc_cleaned.csv"   # Missing values already filtered
         df = pd.read_csv(path)
-        label_col = 'TARGET_BAD_FLAG'
+        label_col = 'RiskPerformance'
 
         X = df.drop(label_col, axis=1).to_numpy()
         y = df[label_col].to_numpy()
