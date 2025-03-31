@@ -8,8 +8,8 @@
 @ATTRIBUTE NumTrades90Ever2DerogPubRec INTEGER
 @ATTRIBUTE PercentTradesNeverDelq INTEGER
 @ATTRIBUTE MSinceMostRecentDelq INTEGER
-@ATTRIBUTE MaxDelq2PublicRecLast12M {-9, 0, 1, 2, 3, 4, 5, 6, 7, 9}
-@ATTRIBUTE MaxDelqEver {-9, 2, 3, 4, 5, 6, 7, 8}
+@ATTRIBUTE MaxDelq2PublicRecLast12M CATEGORICAL
+@ATTRIBUTE MaxDelqEver CATEGORICAL
 @ATTRIBUTE NumTotalTrades INTEGER
 @ATTRIBUTE NumTradesOpeninLast12M INTEGER
 @ATTRIBUTE PercentInstallTrades INTEGER
