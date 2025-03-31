@@ -1,29 +1,5 @@
-@ATTRIBUTE RiskPerformance {Bad, Good}
-@ATTRIBUTE ExternalRiskEstimate INTEGER
-@ATTRIBUTE MSinceOldestTradeOpen INTEGER
-@ATTRIBUTE MSinceMostRecentTradeOpen INTEGER
-@ATTRIBUTE AverageMInFile INTEGER
-@ATTRIBUTE NumSatisfactoryTrades INTEGER
-@ATTRIBUTE NumTrades60Ever2DerogPubRec INTEGER
-@ATTRIBUTE NumTrades90Ever2DerogPubRec INTEGER
-@ATTRIBUTE PercentTradesNeverDelq INTEGER
-@ATTRIBUTE MSinceMostRecentDelq INTEGER
-@ATTRIBUTE MaxDelq2PublicRecLast12M CATEGORICAL
-@ATTRIBUTE MaxDelqEver CATEGORICAL
-@ATTRIBUTE NumTotalTrades INTEGER
-@ATTRIBUTE NumTradesOpeninLast12M INTEGER
-@ATTRIBUTE PercentInstallTrades INTEGER
-@ATTRIBUTE MSinceMostRecentInqexcl7days INTEGER
-@ATTRIBUTE NumInqLast6M INTEGER
-@ATTRIBUTE NumInqLast6Mexcl7days INTEGER
-@ATTRIBUTE NetFractionRevolvingBurden INTEGER
-@ATTRIBUTE NetFractionInstallBurden INTEGER
-@ATTRIBUTE NumRevolvingTradesWBalance INTEGER
-@ATTRIBUTE NumInstallTradesWBalance INTEGER
-@ATTRIBUTE NumBank2NatlTradesWHighUtilization INTEGER
-@ATTRIBUTE PercentTradesWBalance INTEGER
+RiskPerformance,ExternalRiskEstimate,MSinceOldestTradeOpen,MSinceMostRecentTradeOpen,AverageMInFile,NumSatisfactoryTrades,NumTrades60Ever2DerogPubRec,NumTrades90Ever2DerogPubRec,PercentTradesNeverDelq,MSinceMostRecentDelq,MaxDelq2PublicRecLast12M,MaxDelqEver,NumTotalTrades,NumTradesOpeninLast12M,PercentInstallTrades,MSinceMostRecentInqexcl7days,NumInqLast6M,NumInqLast6Mexcl7days,NetFractionRevolvingBurden,NetFractionInstallBurden,NumRevolvingTradesWBalance,NumInstallTradesWBalance,NumBank2NatlTradesWHighUtilization,PercentTradesWBalance
 
-@DATA
 Bad,55,144,4,84,20,3,0,83,2,3,5,23,1,43,0,0,0,33,-8,8,1,1,69
 Bad,61,58,15,41,2,4,4,100,-7,0,8,7,0,67,0,0,0,0,-8,0,-8,-8,0
 Bad,67,66,5,24,9,0,0,100,-7,7,8,9,4,44,0,4,4,53,66,4,2,1,86
