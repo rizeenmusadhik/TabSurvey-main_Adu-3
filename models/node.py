@@ -112,7 +112,9 @@ class NODE(BaseModelTorch):
             if self.args.objective == "binary":
                 y_batch = y_batch.squeeze(-1)  # Remove the extra dimension
             
-            
+            elif self.args.objective == "classification":
+                print(f"y_batch type: {type(y_batch)}, dtype: {y_batch.dtype}, shape: {y_batch.shape}")
+
             
             metrics = self.trainer.train_on_batch(x_batch, y_batch, device=self.device)
             loss_history.append(metrics['loss'].item())
