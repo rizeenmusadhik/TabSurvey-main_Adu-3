@@ -101,6 +101,7 @@ def load_data(args):
         path = "heloc_cleaned.csv"   # Missing values already filtered
         df = pd.read_csv(path)
         label_col = 'RiskPerformance'
+        df[label_col] = df[label_col].replace({'Bad': 0, 'Good': 1})
 
         X = df.drop(label_col, axis=1).to_numpy()
         y = df[label_col].to_numpy()
